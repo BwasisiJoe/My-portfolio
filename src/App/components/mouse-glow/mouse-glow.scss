@@ -1,0 +1,19 @@
+.mouse-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle 320px at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.06) 28%,
+    rgba(255, 255, 255, 0.02) 45%,
+    transparent 68%
+  );
+}
+
+.mouse-glow--visible {
+  opacity: 1;
+}

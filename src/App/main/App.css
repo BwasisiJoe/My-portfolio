@@ -28,6 +28,9 @@
   --container-width-small: 90%;
   --container-width-xs: 95%;
   --transition: all 400ms ease;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
 }
 
 html {
@@ -47,6 +50,11 @@ body {
 }
 
 /* =======General Styles========= */
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
 
 .container {
   width: var(--container-width-large);
