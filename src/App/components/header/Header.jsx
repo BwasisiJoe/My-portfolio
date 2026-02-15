@@ -2,17 +2,38 @@ import "./header.scss"
 import CallToAction from "./CallToAction"
 import HeaderSocials from "./HeaderSocials"
 import ReactTypingEffect from "react-typing-effect"
+import { useEffect, useRef, useState } from "react"
 
 function Header() {
+  const [nameAnimationKey, setNameAnimationKey] = useState(0)
+  const wasInViewRef = useRef(false)
+
+  useEffect(() => {
+    const headerSection = document.getElementById("home")
+    if (!headerSection) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Replay animation only when section is entered (not while staying visible)
+        if (entry.isIntersecting && !wasInViewRef.current) {
+          setNameAnimationKey((prev) => prev + 1)
+        }
+        wasInViewRef.current = entry.isIntersecting
+      },
+      { threshold: 0.45 }
+    )
+
+    observer.observe(headerSection)
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <header id="home" className="header">
       <div className="container header__container">
         <div className="name_description">
-          <div className="flex flex-wrap justify-center">
-            <div className="mt-6">
-              <h1 className="names mt-12">MUGABO JOSHUA</h1>
-            </div>
-          </div>
+          <h1 key={nameAnimationKey} className="names">
+            MUGABO JOSHUA
+          </h1>
           <div>
             <h3 className="text-light">
               SOFTWARE &nbsp;
@@ -34,7 +55,7 @@ function Header() {
             </p>
           </div>
         </div>
-        <CallToAction />
+        <CallToAction key={`cta-${nameAnimationKey}`} />
         <div className="container">
           <HeaderSocials />
         </div>

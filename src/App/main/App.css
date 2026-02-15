@@ -28,6 +28,7 @@
   --container-width-small: 90%;
   --container-width-xs: 95%;
   --transition: all 400ms ease;
+  --section-scroll-offset: 7rem;
 
   --glow-x: 50%;
   --glow-y: 50%;
@@ -89,6 +90,11 @@ h1 {
 
 section {
   margin-top: 8rem;
+  scroll-margin-top: var(--section-scroll-offset);
+}
+
+#home {
+  scroll-margin-top: 0;
 }
 
 section > h2,
@@ -224,6 +230,10 @@ img {
 
 /* --------- MEDIA QUERIES SMALL DEVICES eg SMARTPHONES(RESPONSIVENESS) ------------*/
 @media screen and (max-width: 600px) {
+  :root {
+    --section-scroll-offset: 5.75rem;
+  }
+
   .container {
     width: var(--container-width-small);
   }
@@ -244,6 +254,10 @@ img {
 
 /* --------- EXTRA SMALL DEVICES ------------*/
 @media screen and (max-width: 380px) {
+  :root {
+    --section-scroll-offset: 5.25rem;
+  }
+
   .container {
     width: var(--container-width-xs);
   }

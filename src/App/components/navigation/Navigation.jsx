@@ -18,8 +18,17 @@ function Navigation() {
 
     if (sections.length === 0) return;
 
+    const updateHash = (id) => {
+      const nextHash = `#${id}`;
+      if (window.location.hash !== nextHash) {
+        window.history.replaceState(null, "", nextHash);
+      }
+    };
+
     if (window.location.hash) {
       setActive(window.location.hash);
+    } else {
+      updateHash("home");
     }
 
     const observer = new IntersectionObserver(
@@ -29,7 +38,9 @@ function Navigation() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visibleEntries.length > 0) {
-          setActive(`#${visibleEntries[0].target.id}`);
+          const currentSectionId = visibleEntries[0].target.id;
+          setActive(`#${currentSectionId}`);
+          updateHash(currentSectionId);
         }
       },
       {
