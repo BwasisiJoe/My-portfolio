@@ -12,6 +12,7 @@
   color-scheme: dark;
 }
 
+
 :root {
   --color-background: #1e1e30; 
   --color-page-background: #050816;
@@ -25,15 +26,18 @@
   --container-width-large: 75%;
   --container-width-medium: 86%;
   --container-width-small: 90%;
+  --container-width-xs: 95%;
   --transition: all 400ms ease;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
   background: var(--color-page-background);
   color: var(--color-white);
   line-height: 1.7;
@@ -47,6 +51,19 @@ body {
 .container {
   width: var(--container-width-large);
   margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding-inline: 1rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .container {
+    padding-inline: 0.75rem;
+  }
 }
 
 h1,h2,h3,h4,h5 {
@@ -54,11 +71,11 @@ h1,h2,h3,h4,h5 {
 }
 
 h3 {
-  font-size: 3ch;
+  font-size: clamp(1.25rem, 3ch, 2rem);
 }
 
 h1 {
-  font-size: 9ch;
+  font-size: clamp(2rem, 9ch, 6rem);
 }
 
 section {
@@ -90,6 +107,7 @@ custom:hover {
 
 .btn {
   width: max-content;
+  max-width: 100%;
   display: inline-block;
   color: var(--color-primary);
   padding: 0.55rem 1rem;
@@ -181,36 +199,49 @@ img {
 
 
 /* --------- MEDIA QUERIES MEDIUM DEVICES eg TABLETS(RESPONSIVENESS) ------------*/
-@media screen and (max-width : 1024px){
+@media screen and (max-width: 1024px) {
   .container {
     width: var(--container-width-medium);
   }
 
   section {
     margin-top: 6rem;
-    height: 100vh;
   }
 
-  h3 {
-    font-size: 2ch;
+  section > h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
   }
-  
 }
 
 /* --------- MEDIA QUERIES SMALL DEVICES eg SMARTPHONES(RESPONSIVENESS) ------------*/
-@media screen and (max-width : 600px){
+@media screen and (max-width: 600px) {
   .container {
     width: var(--container-width-small);
   }
 
-  section > h2 {
-    margin-bottom: 2rem;
+  section {
+    margin-top: 5rem;
   }
 
-  h3 {
-    font-size: 3ch;
+  section > h2 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
   }
-  
+
+  section > h5 {
+    font-size: 0.9rem;
+  }
+}
+
+/* --------- EXTRA SMALL DEVICES ------------*/
+@media screen and (max-width: 380px) {
+  .container {
+    width: var(--container-width-xs);
+  }
+
+  section {
+    margin-top: 4rem;
+  }
 }
 
 nav {
@@ -271,22 +302,46 @@ nav a:focus-visible::after {
   background: var(--color-primary);
 }
 
-@media screen and (max-width : 1024px){
+@media screen and (max-width: 1024px) {
   nav {
     padding: 0.6rem 1.2rem;
     gap: 0.6rem;
   }
+
+  nav a {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
 }
 
-@media screen and (max-width : 600px){
+@media screen and (max-width: 600px) {
   nav {
     width: max-content;
     left: 50%;
     transform: translate(-50%);
-    top: 1rem;
+    top: 0.75rem;
     border-radius: 3rem;
     justify-content: center;
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 0.75rem;
+    gap: 0.4rem;
+  }
+
+  nav a {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  nav {
+    padding: 0.4rem 0.6rem;
+    gap: 0.3rem;
+    top: 0.5rem;
+  }
+
+  nav a {
+    padding: 0.5rem;
+    font-size: 0.9rem;
   }
 }
 

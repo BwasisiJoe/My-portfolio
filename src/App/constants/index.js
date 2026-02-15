@@ -121,12 +121,15 @@ import {
       icon: starbucks,
       iconBg: "#383E56",
       date: "March 2020 - April 2021",
+      location: "Seattle, USA",
+      website: "starbucks.com",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
         "Implementing responsive design and ensuring cross-browser compatibility.",
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
+      skills: ["JS", "React", "Redux", "Node.js"],
     },
     {
       title: "React Native Developer",
@@ -134,12 +137,15 @@ import {
       icon: tesla,
       iconBg: "#E6DEDD",
       date: "Jan 2021 - Feb 2022",
+      location: "Austin, USA",
+      website: "tesla.com",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
         "Implementing responsive design and ensuring cross-browser compatibility.",
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
+      skills: ["JS", "React Native", "TypeScript", "Redux"],
     },
     {
       title: "Web Developer",
@@ -147,12 +153,15 @@ import {
       icon: shopify,
       iconBg: "#383E56",
       date: "Jan 2022 - Jan 2023",
+      location: "Ottawa, Canada",
+      website: "shopify.com",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
         "Implementing responsive design and ensuring cross-browser compatibility.",
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
+      skills: ["JS", "React", "Tailwind", "Node.js"],
     },
     {
       title: "Full stack Developer",
@@ -160,12 +169,15 @@ import {
       icon: meta,
       iconBg: "#E6DEDD",
       date: "Jan 2023 - Present",
+      location: "Menlo Park, USA",
+      website: "meta.com",
       points: [
         "Developing and maintaining web applications using React.js and other related technologies.",
         "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
         "Implementing responsive design and ensuring cross-browser compatibility.",
         "Participating in code reviews and providing constructive feedback to other developers.",
       ],
+      skills: ["JS", "TS", "React", "Node.js", "MongoDB"],
     },
   ];
   
