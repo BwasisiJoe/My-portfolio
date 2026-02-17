@@ -5,6 +5,7 @@ import Experience from '../components/experience/Experience'
 import Expertise from '../components/expertise/Expertise'
 import Testimonials from '../components/testimonials/Testimonials'
 import Contact from '../components/contact/Contact'
+import Footer from '../components/footer/Footer'
 import MouseGlow from '../components/mouse-glow/MouseGlow'
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Expertise/>
         <Testimonials/>
         <Contact/>
+        <Footer />
       </div>
       <MouseGlow />
     </>

@@ -1,0 +1,120 @@
+.contact {
+  height: 100%;
+}
+
+.contact__card {
+  position: relative;
+  top: 0;
+  border-radius: 1.25rem;
+  padding: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(
+    150deg,
+    rgba(5, 8, 22, 0.92),
+    rgba(44, 44, 92, 0.86)
+  );
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.contact__card::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  top: -75px;
+  right: -75px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(49, 156, 233, 0.34) 0%,
+    rgba(49, 156, 233, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.contact__label {
+  margin: 0;
+  letter-spacing: 0.28em;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-weight: 700;
+}
+
+.contact__title {
+  margin: 0.35rem 0 0.8rem;
+  color: var(--color-white);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.contact__subtitle {
+  margin: 0;
+  color: var(--color-light);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.contact__actions {
+  margin-top: 1.35rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.contact__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(5, 8, 22, 0.45);
+  transition: transform 0.25s ease, background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.contact__chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(49, 156, 233, 0.7);
+  background: rgba(49, 156, 233, 0.16);
+}
+
+.contact__chip--primary {
+  grid-column: 1 / -1;
+  color: #0c2130;
+  background: rgba(143, 229, 255, 0.92);
+  border-color: rgba(143, 229, 255, 0.92);
+}
+
+.contact__chip--primary:hover {
+  background: rgba(176, 239, 255, 0.98);
+  border-color: rgba(176, 239, 255, 0.98);
+}
+
+@media screen and (max-width: 600px) {
+  .contact__card {
+    padding: 1.2rem;
+  }
+
+  .contact__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .contact__chip--primary {
+    grid-column: auto;
+  }
+
+  .contact__chip {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+  }
+}

@@ -1,10 +1,15 @@
-import React from 'react'
-import './footer.scss'
+import "./footer.scss";
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <section id='footer'>Footer</section>
-  )
+    <footer className="footer" id="footer">
+      <p className="footer__copyright">
+        Copyright © {year} Joshua Mugabo. All rights reserved.
+      </p>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

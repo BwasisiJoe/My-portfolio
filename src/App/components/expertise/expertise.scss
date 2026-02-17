@@ -1,0 +1,118 @@
+.expertise__container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.expertise__card {
+  background: rgba(5, 8, 22, 0.72);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.8rem 1.6rem;
+  min-height: 250px;
+}
+
+.expertise__card:nth-child(2n) {
+  border-right: none;
+}
+
+.expertise__card:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.expertise__head {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.expertise__icon {
+  color: var(--color-white);
+  font-size: 1.9rem;
+  margin-top: 0.15rem;
+}
+
+.expertise__head h3 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: 1.8rem;
+  line-height: 1.15;
+}
+
+.expertise__head p {
+  margin: 0.2rem 0 0;
+  color: var(--color-white);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Sora", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.expertise__description-wrap {
+  border-left: 2px solid rgba(255, 255, 255, 0.28);
+  padding-left: 1rem;
+}
+
+.expertise__code-tag {
+  display: block;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.expertise__description {
+  margin: 0.45rem 0;
+  color: var(--color-light);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  font-family: "JetBrains Mono", monospace;
+}
+
+@media screen and (max-width: 900px) {
+  .expertise__container {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise__card {
+    border-right: none;
+  }
+
+  .expertise__card:nth-last-child(-n + 2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .expertise__card:last-child {
+    border-bottom: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .expertise__card {
+    padding: 1.3rem 1.1rem;
+    min-height: auto;
+  }
+
+  .expertise__icon {
+    font-size: 1.5rem;
+  }
+
+  .expertise__head h3 {
+    font-size: 1.35rem;
+  }
+
+  .expertise__head p {
+    font-size: 0.92rem;
+  }
+
+  .expertise__description {
+    font-size: 0.9rem;
+  }
+
+  .expertise__code-tag {
+    font-size: 0.82rem;
+  }
+}

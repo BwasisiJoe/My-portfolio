@@ -5,31 +5,32 @@ import { FcAbout } from "react-icons/fc";
 import { FaBriefcase } from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
 import { BiMessageRoundedDetail } from "react-icons/bi";
+import { BsChatQuote } from "react-icons/bs";
 
 
 function Navigation() {
-  const [active, setActive] = useState("#home");
+  const [active, setActive] = useState("home");
+
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActive(id);
+    // Keep URL clean (no #fragments)
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  };
 
   useEffect(() => {
-    const sectionIds = ["home", "about", "experience", "expertise", "contact"];
+    const sectionIds = ["home", "about", "experience", "expertise", "testimonials", "contact"];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean);
 
     if (sections.length === 0) return;
 
-    const updateHash = (id) => {
-      const nextHash = `#${id}`;
-      if (window.location.hash !== nextHash) {
-        window.history.replaceState(null, "", nextHash);
-      }
-    };
-
-    if (window.location.hash) {
-      setActive(window.location.hash);
-    } else {
-      updateHash("home");
-    }
+    setActive("home");
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -39,8 +40,7 @@ function Navigation() {
 
         if (visibleEntries.length > 0) {
           const currentSectionId = visibleEntries[0].target.id;
-          setActive(`#${currentSectionId}`);
-          updateHash(currentSectionId);
+          setActive(currentSectionId);
         }
       },
       {
@@ -59,45 +59,72 @@ function Navigation() {
   return (
     <nav>
       <a
-        href="#home"
-        onClick={() => setActive("#home")}
-        className={active === "#home" ? "active  nav_btn" : " nav_btn"}
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("home");
+        }}
+        className={active === "home" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Home"
         aria-label="Home"
       >
         <FiHome />
       </a>
       <a
-        href="#about"
-        onClick={() => setActive("#about")}
-        className={active === "#about" ? "active  nav_btn" : " nav_btn"}
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("about");
+        }}
+        className={active === "about" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="About"
         aria-label="About"
       >
         <FcAbout />
       </a>
       <a
-        href="#experience"
-        onClick={() => setActive("#experience")}
-        className={active === "#experience" ? "active  nav_btn" : " nav_btn"}
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("experience");
+        }}
+        className={active === "experience" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Experience"
         aria-label="Experience"
       >
         <FaBriefcase />
       </a>
       <a
-        href="#expertise"
-        onClick={() => setActive("#expertise")}
-        className={active === "#expertise" ? "active  nav_btn" : " nav_btn"}
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("expertise");
+        }}
+        className={active === "expertise" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Expertise"
         aria-label="Expertise"
       >
         <GiSkills />
       </a>
       <a
-        href="#contact"
-        onClick={() => setActive("#contact")}
-        className={active === "#contact" ? "active  nav_btn contact-link" : " nav_btn contact-link"}
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("testimonials");
+        }}
+        className={active === "testimonials" ? "active  nav_btn" : " nav_btn"}
+        data-tooltip="Testimonials"
+        aria-label="Testimonials"
+      >
+        <BsChatQuote />
+      </a>
+      <a
+        href="/"
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("contact");
+        }}
+        className={active === "contact" ? "active  nav_btn contact-link" : " nav_btn contact-link"}
         data-tooltip="Contact"
         aria-label="Contact"
       >

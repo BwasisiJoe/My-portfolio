@@ -27,6 +27,14 @@ function Header() {
     return () => observer.disconnect()
   }, [])
 
+  const handleScrollDown = (e) => {
+    e.preventDefault()
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    })
+  }
+
   return (
     <header id="home" className="header">
       <div className="container header__container">
@@ -59,7 +67,7 @@ function Header() {
         <div className="container">
           <HeaderSocials />
         </div>
-        <a href="#contact" className="scroll__down">
+        <a href="/" onClick={handleScrollDown} className="scroll__down">
           <span></span>
           <span></span>
           <span></span>

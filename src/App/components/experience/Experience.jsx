@@ -4,7 +4,7 @@ import { experiences } from "../../constants";
 import "./experience.scss";
 
 function Experience() {
-  const [openId, setOpenId] = useState(0);
+  const [openId, setOpenId] = useState(-1);
 
   const toggleItem = (id) => {
     setOpenId((prev) => (prev === id ? -1 : id));

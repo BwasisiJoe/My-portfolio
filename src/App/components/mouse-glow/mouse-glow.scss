@@ -1,19 +1,55 @@
-.mouse-glow {
+.mouse-cursor-ring,
+.mouse-cursor-dot {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   pointer-events: none;
   z-index: 9999;
   opacity: 0;
-  transition: opacity 0.35s ease;
-  background: radial-gradient(
-    circle 320px at var(--glow-x, 50%) var(--glow-y, 50%),
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.06) 28%,
-    rgba(255, 255, 255, 0.02) 45%,
-    transparent 68%
-  );
+  transform: translate3d(-100px, -100px, 0);
+  transition: opacity 160ms ease, width 180ms ease, height 180ms ease,
+    margin 180ms ease, background-color 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
-.mouse-glow--visible {
+.mouse-cursor-ring {
+  width: 26px;
+  height: 26px;
+  border: 2px solid rgba(111, 126, 173, 0.95);
+  border-radius: 50%;
+  margin-left: -13px;
+  margin-top: -13px;
+}
+
+.mouse-cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(111, 126, 173, 1);
+  margin-left: -3px;
+  margin-top: -3px;
+}
+
+.mouse-cursor-ring.is-pointer {
+  width: 54px;
+  height: 54px;
+  margin-left: -27px;
+  margin-top: -27px;
+  border-color: rgba(159, 167, 197, 0.25);
+  background: rgba(159, 167, 197, 0.28);
+  box-shadow: 0 0 0 1px rgba(159, 167, 197, 0.18) inset;
+}
+
+.mouse-cursor-dot.is-pointer {
+  opacity: 0;
+}
+
+.mouse-cursor-ring.is-visible,
+.mouse-cursor-dot.is-visible {
   opacity: 1;
+}
+
+body.custom-cursor-enabled,
+body.custom-cursor-enabled * {
+  cursor: none !important;
 }

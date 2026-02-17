@@ -2,6 +2,14 @@ import "./about.scss"
 import { FaAward, FaLaptopCode, FaMapMarkerAlt } from "react-icons/fa"
 
 function About() {
+  const handleTalkToMe = (e) => {
+    e.preventDefault()
+    document.getElementById("contact")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    })
+  }
+
   return (
     <section id="about" className="about">
       <h5>Get To Know</h5>
@@ -37,7 +45,7 @@ function About() {
             solutions. Proficient in Spring, Node.js, ZK, Angular, and React,
             and skilled in OOP and design patterns.
           </p>
-          <a href="#contact" className="btn">
+          <a href="/" onClick={handleTalkToMe} className="btn">
             Talk To me
           </a>
         </div>
