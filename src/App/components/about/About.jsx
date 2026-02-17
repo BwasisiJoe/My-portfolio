@@ -1,13 +1,11 @@
 import "./about.scss"
 import { FaAward, FaLaptopCode, FaMapMarkerAlt } from "react-icons/fa"
+import { scrollToSection } from "../../utils/scrollToSection"
 
 function About() {
   const handleTalkToMe = (e) => {
     e.preventDefault()
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
+    scrollToSection("contact")
   }
 
   return (

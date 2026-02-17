@@ -6,19 +6,22 @@ import { FaBriefcase } from "react-icons/fa";
 import { GiSkills } from "react-icons/gi";
 import { BiMessageRoundedDetail } from "react-icons/bi";
 import { BsChatQuote } from "react-icons/bs";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 
 function Navigation() {
   const [active, setActive] = useState("home");
-
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (!section) return;
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  
+  const handleNavScroll = (id) => {
+    scrollToSection(id);
     setActive(id);
     // Keep URL clean (no #fragments)
     if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
     }
   };
 
@@ -62,7 +65,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("home");
+          handleNavScroll("home");
         }}
         className={active === "home" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Home"
@@ -74,7 +77,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("about");
+          handleNavScroll("about");
         }}
         className={active === "about" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="About"
@@ -86,7 +89,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("experience");
+          handleNavScroll("experience");
         }}
         className={active === "experience" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Experience"
@@ -98,7 +101,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("expertise");
+          handleNavScroll("expertise");
         }}
         className={active === "expertise" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Expertise"
@@ -110,7 +113,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("testimonials");
+          handleNavScroll("testimonials");
         }}
         className={active === "testimonials" ? "active  nav_btn" : " nav_btn"}
         data-tooltip="Testimonials"
@@ -122,7 +125,7 @@ function Navigation() {
         href="/"
         onClick={(e) => {
           e.preventDefault();
-          scrollToSection("contact");
+          handleNavScroll("contact");
         }}
         className={active === "contact" ? "active  nav_btn contact-link" : " nav_btn contact-link"}
         data-tooltip="Contact"

@@ -1,12 +1,10 @@
 import CV from '../../resources/resume.pdf'
+import { scrollToSection } from "../../utils/scrollToSection"
 
 function CallToAction() {
   const handleReachOut = (e) => {
     e.preventDefault()
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
+    scrollToSection("contact")
   }
 
   return (

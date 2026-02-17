@@ -1,7 +1,16 @@
-import { BsEnvelope, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
+import { useState } from "react";
+import { BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 import "./contact.scss";
 
 function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    e.currentTarget.reset();
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="container">
@@ -13,23 +22,67 @@ function Contact() {
             build useful products with real impact.
           </p>
 
-          <div className="contact__actions">
-            <a href="mailto:joshua@example.com" className="contact__chip contact__chip--primary">
-              <BsEnvelope />
-              joshua@example.com
-            </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="contact__chip">
-              <BsTwitterX />
-              @joshua
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="contact__chip">
-              <BsInstagram />
-              @joshua.dev
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="contact__chip">
-              <BsLinkedin />
-              linkedin
-            </a>
+          <div className="contact__content">
+            <div className="contact__left">
+              <p className="contact__mini-title">Find me online</p>
+              <div className="contact__actions">
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact__chip"
+                >
+                  <BsTwitterX />
+                  @joshua
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact__chip"
+                >
+                  <BsInstagram />
+                  @joshua.dev
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact__chip"
+                >
+                  <BsLinkedin />
+                  linkedin
+                </a>
+              </div>
+            </div>
+
+            <form className="contact__form" onSubmit={handleSubmit}>
+              <label className="contact__field">
+                <span>Name</span>
+                <input type="text" name="name" required placeholder="Your name" />
+              </label>
+              <label className="contact__field">
+                <span>Email</span>
+                <input type="email" name="email" required placeholder="your@email.com" />
+              </label>
+              <label className="contact__field">
+                <span>Message</span>
+                <textarea
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Tell me about your project..."
+                />
+              </label>
+              <button type="submit" className="contact__submit">
+                Send Message
+              </button>
+              {submitted && (
+                <p className="contact__success">
+                  Thanks! Your message is queued. I will get back to you soon.
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>

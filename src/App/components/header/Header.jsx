@@ -3,6 +3,7 @@ import CallToAction from "./CallToAction"
 import HeaderSocials from "./HeaderSocials"
 import ReactTypingEffect from "react-typing-effect"
 import { useEffect, useRef, useState } from "react"
+import { scrollToSection } from "../../utils/scrollToSection"
 
 function Header() {
   const [nameAnimationKey, setNameAnimationKey] = useState(0)
@@ -29,10 +30,7 @@ function Header() {
 
   const handleScrollDown = (e) => {
     e.preventDefault()
-    document.getElementById("contact")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    })
+    scrollToSection("contact")
   }
 
   return (
