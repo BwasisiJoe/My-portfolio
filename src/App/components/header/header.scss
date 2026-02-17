@@ -2,6 +2,55 @@ header {
   height: 100vh;
   padding-top: 0;
   overflow: hidden;
+  position: relative;
+}
+
+header::before {
+  content: none;
+}
+
+.header__container {
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name_description {
+  max-width: 56rem;
+  padding: clamp(1rem, 2vw, 1.6rem);
+  border-radius: 1.4rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.hero_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(79, 190, 255, 0.45);
+  background: transparent;
+  color: #d7eeff;
+  font-size: 0.72rem;
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: 0.03em;
+}
+
+.hero_badge::before {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: #8af09a;
+  box-shadow: 0 0 10px rgba(138, 240, 154, 0.7);
 }
 
 .names {
@@ -9,19 +58,49 @@ header {
   line-height: 1.1;
   word-break: break-word;
   animation: namePulse 2s cubic-bezier(0.4, 0, 0.6, 1) 1 both;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #ffffff, #9ed8ff 52%, #61b8ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 8px 24px rgba(43, 133, 201, 0.2);
 }
 
-.btn-reach-out {
-  width: max-content;
-  display: inline-block;
+.typing {
   color: var(--color-primary);
-  padding: 0.55rem 1rem;
-  border-radius: 1.8rem;
-  cursor: pointer;
-  bottom: 1px solid var(--color-primary);
-  transition: var(--transition);
-  border: 2px solid var(--color-primary);
-  font-weight: bold;
+  font-weight: 600;
+}
+
+.details {
+  font-size: clamp(0.875rem, 1.8ch, 1.1rem);
+  margin-top: 0.65rem;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.details p {
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hero_chips {
+  margin-top: 0.95rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.hero_chips span {
+  border-radius: 999px;
+  border: 1px solid rgba(79, 190, 255, 0.35);
+  background: transparent;
+  color: #cde9ff;
+  padding: 0.24rem 0.7rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  font-family: "JetBrains Mono", monospace;
 }
 
 .btn-reach-out {
@@ -66,23 +145,9 @@ header {
   opacity: 0;
 }
 
-.header__container {
-  text-align: center;
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.name_description {
-  max-width: 56rem;
-}
-
 /*------------CallToAction------------*/
 .CTA {
-  margin-top: 2.5rem;
+  margin-top: 1.6rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1.2rem;
@@ -141,10 +206,11 @@ header {
 
   .name_description {
     margin-bottom: 2rem;
+    padding: 1rem;
   }
 
   .CTA {
-    margin-top: 2rem;
+    margin-top: 1.4rem;
     gap: 1rem;
   }
 }
@@ -190,9 +256,13 @@ header {
     margin-bottom: 1.5rem;
   }
 
+  .hero_chips {
+    gap: 0.45rem;
+  }
+
   .CTA {
     flex-direction: column;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     gap: 0.75rem;
   }
 
@@ -228,6 +298,7 @@ header {
     right: -2.3rem;
   }
 }
+
 .scroll__down span {
   position: absolute;
   top: 0;
@@ -244,20 +315,24 @@ header {
   opacity: 0;
   box-sizing: border-box;
 }
+
 .scroll__down span:nth-of-type(1) {
   -webkit-animation-delay: 0s;
   animation-delay: 0s;
 }
+
 .scroll__down span:nth-of-type(2) {
   top: 16px;
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
 }
+
 .scroll__down span:nth-of-type(3) {
   top: 32px;
   -webkit-animation-delay: 0.3s;
   animation-delay: 0.3s;
 }
+
 @-webkit-keyframes sdb07 {
   0% {
     opacity: 0;
@@ -269,6 +344,7 @@ header {
     opacity: 0;
   }
 }
+
 @keyframes sdb07 {
   0% {
     opacity: 0;
@@ -279,22 +355,6 @@ header {
   100% {
     opacity: 0;
   }
-}
-
-.typing {
-  color: var(--color-primary);
-}
-
-.details {
-  font-size: clamp(0.875rem, 1.8ch, 1.1rem);
-  margin-top: 15px;
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.details p {
-  line-height: 1.6;
 }
 
 @keyframes namePulse {

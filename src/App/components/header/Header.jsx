@@ -21,7 +21,7 @@ function Header() {
         }
         wasInViewRef.current = entry.isIntersecting
       },
-      { threshold: 0.45 }
+      { threshold: 0.45 },
     )
 
     observer.observe(headerSection)
@@ -37,6 +37,7 @@ function Header() {
     <header id="home" className="header">
       <div className="container header__container">
         <div className="name_description">
+          <p className="hero_badge">Open to impactful projects</p>
           <h1 key={nameAnimationKey} className="names">
             MUGABO JOSHUA
           </h1>
@@ -51,14 +52,14 @@ function Header() {
           </div>
           <div className="details">
             <p>
-              Experienced Rwandan Software Developer with over 4 years of
-              hands-on expertise in
-              <br /> designing and building robust, scalable software solutions.
-              <br /> Proficient in developing sophisticated applications using
-              modern,
-              <br /> cutting-edge technologies to solve real-world problems and
-              drive business value.
+              Full-stack software engineer focused on elegant UX, scalable
+              architecture, and real-world impact.
             </p>
+          </div>
+          <div className="hero_chips">
+            <span>4+ Years</span>
+            <span>Full Stack</span>
+            <span>Java + JS</span>
           </div>
         </div>
         <CallToAction key={`cta-${nameAnimationKey}`} />
