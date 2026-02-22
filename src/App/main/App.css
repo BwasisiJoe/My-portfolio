@@ -119,8 +119,13 @@ section > h5 {
   color: var(--color-light);
 }
 
+section > h5 {
+  margin-bottom: 0.3rem;
+}
+
 section > h2 {
   color: var(--color-primary);
+  margin-bottom: 2rem;
 }
 
 .text-light {
@@ -179,12 +184,12 @@ custom:hover {
 }
 
 .btn-animated-left {
-  animation: moveInRight 5s ease-out;
+  animation: moveInRight 1s ease-out;
   animation-fill-mode: backwards;
 }
 
 .btn-animated-right {
-  animation: moveInLeft 5s ease-out;
+  animation: moveInLeft 1s ease-out;
   animation-fill-mode: backwards;
 }
 
@@ -308,8 +313,12 @@ nav {
 nav a {
   background: transparent;
   padding: 0.9rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   border-radius: 50%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-light);
   font-size: 1.1rem;
   position: relative;
@@ -317,6 +326,12 @@ nav a {
 
 nav a:hover {
   background: var(--color-primary);
+}
+
+nav a:focus-visible {
+  background: rgba(49, 156, 233, 0.3);
+  outline: 2px solid rgba(49, 156, 233, 0.9);
+  outline-offset: 2px;
 }
 
 nav a::after {
@@ -374,6 +389,8 @@ nav a:focus-visible::after {
   nav a {
     padding: 0.6rem;
     font-size: 0.95rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
   }
 }
 
@@ -401,6 +418,8 @@ nav a:focus-visible::after {
   nav a {
     padding: 0.5rem;
     font-size: 0.9rem;
+    min-width: 2.35rem;
+    min-height: 2.35rem;
   }
 }
 

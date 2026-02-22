@@ -1,7 +1,11 @@
 .nav_btn {
-  transition: 0.3s ease-in-out;
+  transition: transform 0.24s ease, background-color 0.24s ease;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    transform: scale(1.05);
   }
 }
 

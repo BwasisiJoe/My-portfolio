@@ -33,22 +33,15 @@ function Navigation() {
 
     if (sections.length === 0) return;
 
-    const getScrollOffset = () => {
-      const offsetRaw = getComputedStyle(document.documentElement).getPropertyValue(
-        "--section-scroll-offset"
-      );
-      return Number.parseFloat(offsetRaw) || 0;
-    };
-
     const updateActiveFromScroll = () => {
-      // Probe near the top content anchor, matching scrollToSection alignment.
-      const probeY = window.scrollY + getScrollOffset() + 24;
+      // Anchor line around upper-middle viewport tracks "currently viewed" section better.
+      const anchorY = window.scrollY + window.innerHeight * 0.38;
 
       const containingSection = sections.find(({ el }) => {
         if (!el) return false;
         const top = el.offsetTop;
         const bottom = top + el.offsetHeight;
-        return probeY >= top && probeY < bottom;
+        return anchorY >= top && anchorY < bottom;
       });
 
       if (containingSection) {
@@ -56,19 +49,17 @@ function Navigation() {
         return;
       }
 
-      // Fallback: closest section top to probe point.
-      const closest = sections.reduce(
-        (acc, section) => {
-          if (!section.el) return acc;
-          const distance = Math.abs(section.el.offsetTop - probeY);
-          return distance < acc.distance ? { id: section.id, distance } : acc;
-        },
-        { id: "home", distance: Number.POSITIVE_INFINITY }
-      );
+      // Fallback: choose the last section whose top has passed the anchor line.
+      const passed = sections
+        .filter(({ el }) => el && el.offsetTop <= anchorY)
+        .sort((a, b) => (a.el?.offsetTop || 0) - (b.el?.offsetTop || 0));
 
-      if (closest.id) {
-        setActive(closest.id);
+      if (passed.length > 0) {
+        setActive(passed[passed.length - 1].id);
+        return;
       }
+
+      setActive("home");
     };
 
     let ticking = false;
