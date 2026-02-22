@@ -295,12 +295,14 @@ nav {
   z-index: 2;
   position: fixed;
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   top: 1rem;
   display: flex;
   gap: 0.8rem;
   border-radius: 3rem;
   backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 nav a {
@@ -361,7 +363,7 @@ nav a:focus-visible::after {
   nav {
     width: max-content;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     top: 0.75rem;
     border-radius: 3rem;
     justify-content: center;
@@ -372,6 +374,20 @@ nav a:focus-visible::after {
   nav a {
     padding: 0.6rem;
     font-size: 0.95rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  nav {
+    top: 1.4rem;
+    padding: 0.85rem 2rem;
+    gap: 1rem;
+    border-radius: 3.4rem;
+  }
+
+  nav a {
+    padding: 1rem;
+    font-size: 1.2rem;
   }
 }
 

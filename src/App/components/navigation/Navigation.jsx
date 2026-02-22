@@ -37,18 +37,19 @@ function Navigation() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntries = entries
+        const inView = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-        if (visibleEntries.length > 0) {
-          const currentSectionId = visibleEntries[0].target.id;
-          setActive(currentSectionId);
+        if (inView.length > 0) {
+          setActive(inView[0].target.id);
         }
       },
       {
         root: null,
-        threshold: [0.2, 0.4, 0.6, 0.8],
+        // Keeps active section aligned with viewport center on large screens.
+        rootMargin: "-35% 0px -45% 0px",
+        threshold: [0, 0.15, 0.35, 0.55, 0.75],
       }
     );
 

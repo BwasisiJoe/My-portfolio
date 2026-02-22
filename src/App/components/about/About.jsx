@@ -21,7 +21,7 @@ function About() {
       <div className="container about_container">
         <div className="about_me">
           <div className="about_me_img">
-            <img src="/src/assets/logo.png" alt="Joshua portrait logo" />
+            <img src="/src/assets/Me.jpeg" alt="Mugabo Joshua portrait" />
           </div>
         </div>
         <div className="about_me_content">
