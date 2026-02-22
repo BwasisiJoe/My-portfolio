@@ -5,16 +5,40 @@ import {
   FaMapMarkerAlt,
   FaRegLightbulb,
 } from "react-icons/fa"
+import { useEffect, useRef, useState } from "react"
 import { scrollToSection } from "../../utils/scrollToSection"
 
 function About() {
+  const [isInView, setIsInView] = useState(false)
+  const aboutRef = useRef(null)
+
+  useEffect(() => {
+    const section = aboutRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.25 }
+    )
+
+    observer.observe(section)
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleTalkToMe = (e) => {
     e.preventDefault()
     scrollToSection("contact")
   }
 
   return (
-    <section id="about" className="about">
+    <section
+      id="about"
+      ref={aboutRef}
+      className={`about ${isInView ? "about--in-view" : ""}`}
+    >
       <h5>Get To Know</h5>
       <h2>About Me</h2>
 

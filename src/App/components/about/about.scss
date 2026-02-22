@@ -8,19 +8,83 @@
   isolation: isolate;
 }
 
+.about .about_me,
+.about .about_card,
+.about .about_intro,
+.about .about_highlights,
+.about .about_me_content p:not(.about_lead),
+.about .about_me_content .btn {
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity 650ms ease, transform 650ms ease, filter 650ms ease;
+}
+
+.about .about_me {
+  transform: translateY(20px);
+}
+
+.about .about_card {
+  transform: translateY(24px);
+}
+
+.about .about_intro,
+.about .about_highlights,
+.about .about_me_content p:not(.about_lead),
+.about .about_me_content .btn {
+  transform: translateY(18px);
+}
+
+.about.about--in-view .about_me,
+.about.about--in-view .about_card,
+.about.about--in-view .about_intro,
+.about.about--in-view .about_highlights,
+.about.about--in-view .about_me_content p:not(.about_lead),
+.about.about--in-view .about_me_content .btn {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.about .about_me {
+  transition-delay: 60ms;
+}
+
+.about .about_cards .about_card:nth-child(1) {
+  transition-delay: 140ms;
+}
+
+.about .about_cards .about_card:nth-child(2) {
+  transition-delay: 220ms;
+}
+
+.about .about_cards .about_card:nth-child(3) {
+  transition-delay: 300ms;
+}
+
+.about .about_intro {
+  transition-delay: 360ms;
+}
+
+.about .about_highlights {
+  transition-delay: 430ms;
+}
+
+.about .about_me_content p:not(.about_lead) {
+  transition-delay: 500ms;
+}
+
+.about .about_me_content .btn {
+  transition-delay: 560ms;
+}
+
 .about_container::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 2rem;
-  background: linear-gradient(
-    145deg,
-    rgba(79, 190, 255, 0.12),
-    rgba(18, 34, 67, 0.45) 45%,
-    rgba(8, 13, 31, 0.82)
-  );
-  border: 1px solid rgba(79, 190, 255, 0.18);
-  box-shadow: 0 18px 45px rgba(5, 8, 22, 0.5);
+  background: transparent;
+  border: none;
+  box-shadow: none;
   z-index: -1;
 }
 
@@ -406,5 +470,19 @@
   .about_intro {
     justify-content: center;
     text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about .about_me,
+  .about .about_card,
+  .about .about_intro,
+  .about .about_highlights,
+  .about .about_me_content p:not(.about_lead),
+  .about .about_me_content .btn {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
   }
 }

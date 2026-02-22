@@ -1,9 +1,29 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 import "./contact.scss";
 
 function Contact() {
+  const [isInView, setIsInView] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const contactRef = useRef(null);
+
+  useEffect(() => {
+    const section = contactRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.22,
+        rootMargin: "-8% 0px -12% 0px",
+      }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +32,11 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="contact">
+    <section
+      id="contact"
+      ref={contactRef}
+      className={`contact ${isInView ? "contact--in-view" : ""}`}
+    >
       <div className="container">
         <div className="contact__card">
           <p className="contact__label">CONTACT</p>

@@ -28,36 +28,69 @@ function Navigation() {
   useEffect(() => {
     const sectionIds = ["home", "about", "experience", "expertise", "testimonials", "contact"];
     const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+      .map((id) => ({ id, el: document.getElementById(id) }))
+      .filter((section) => section.el);
 
     if (sections.length === 0) return;
 
-    setActive("home");
+    const getScrollOffset = () => {
+      const offsetRaw = getComputedStyle(document.documentElement).getPropertyValue(
+        "--section-scroll-offset"
+      );
+      return Number.parseFloat(offsetRaw) || 0;
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const inView = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const updateActiveFromScroll = () => {
+      // Probe near the top content anchor, matching scrollToSection alignment.
+      const probeY = window.scrollY + getScrollOffset() + 24;
 
-        if (inView.length > 0) {
-          setActive(inView[0].target.id);
-        }
-      },
-      {
-        root: null,
-        // Keeps active section aligned with viewport center on large screens.
-        rootMargin: "-35% 0px -45% 0px",
-        threshold: [0, 0.15, 0.35, 0.55, 0.75],
+      const containingSection = sections.find(({ el }) => {
+        if (!el) return false;
+        const top = el.offsetTop;
+        const bottom = top + el.offsetHeight;
+        return probeY >= top && probeY < bottom;
+      });
+
+      if (containingSection) {
+        setActive(containingSection.id);
+        return;
       }
-    );
 
-    sections.forEach((section) => observer.observe(section));
+      // Fallback: closest section top to probe point.
+      const closest = sections.reduce(
+        (acc, section) => {
+          if (!section.el) return acc;
+          const distance = Math.abs(section.el.offsetTop - probeY);
+          return distance < acc.distance ? { id: section.id, distance } : acc;
+        },
+        { id: "home", distance: Number.POSITIVE_INFINITY }
+      );
+
+      if (closest.id) {
+        setActive(closest.id);
+      }
+    };
+
+    let ticking = false;
+    const onScrollOrResize = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveFromScroll();
+        ticking = false;
+      });
+    };
+
+    updateActiveFromScroll();
+    const initialSyncTimer = window.setTimeout(updateActiveFromScroll, 120);
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
-      observer.disconnect();
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.clearTimeout(initialSyncTimer);
     };
   }, []);
   return (

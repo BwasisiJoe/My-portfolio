@@ -1,17 +1,42 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsGeoAlt, BsBoxArrowUpRight, BsPlus, BsDash } from "react-icons/bs";
 import { experiences } from "../../constants";
 import "./experience.scss";
 
 function Experience() {
   const [openId, setOpenId] = useState(-1);
+  const [isInView, setIsInView] = useState(false);
+  const experienceRef = useRef(null);
+
+  useEffect(() => {
+    const section = experienceRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.22,
+        rootMargin: "-10% 0px -12% 0px",
+      }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggleItem = (id) => {
     setOpenId((prev) => (prev === id ? -1 : id));
   };
 
   return (
-    <section id="experience" className="experience">
+    <section
+      id="experience"
+      ref={experienceRef}
+      className={`experience ${isInView ? "experience--in-view" : ""}`}
+    >
       <div className="container experience__container">
         <h5>What I Have Done</h5>
         <h2 className="experience__heading">Professional Experience</h2>
@@ -23,6 +48,7 @@ function Experience() {
               <article
                 key={index}
                 className={`experience__item ${isOpen ? "is-open" : ""}`}
+                style={{ "--exp-delay": `${index * 110}ms` }}
               >
                 <button
                   type="button"

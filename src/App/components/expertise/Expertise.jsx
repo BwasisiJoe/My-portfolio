@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { FaCode, FaDatabase, FaMobileAlt, FaServer } from "react-icons/fa";
 import "./expertise.scss";
 
@@ -33,14 +34,43 @@ const expertiseItems = [
 ];
 
 function Expertise() {
+  const [isInView, setIsInView] = useState(false);
+  const expertiseRef = useRef(null);
+
+  useEffect(() => {
+    const section = expertiseRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.24,
+        rootMargin: "-8% 0px -12% 0px",
+      }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="expertise" className="expertise">
+    <section
+      id="expertise"
+      ref={expertiseRef}
+      className={`expertise ${isInView ? "expertise--in-view" : ""}`}
+    >
       <h5>What I Build With</h5>
       <h2>Expertise</h2>
 
       <div className="container expertise__container">
-        {expertiseItems.map(({ title, stack, description, Icon }) => (
-          <article key={title} className="expertise__card">
+        {expertiseItems.map(({ title, stack, description, Icon }, index) => (
+          <article
+            key={title}
+            className="expertise__card"
+            style={{ "--expertise-delay": `${index * 120}ms` }}
+          >
             <div className="expertise__head">
               <Icon className="expertise__icon" />
               <div>
