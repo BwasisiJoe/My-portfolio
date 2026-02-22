@@ -14,6 +14,7 @@ function Experience() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Drives section-level class for staggered card entrance animations.
         setIsInView(entry.isIntersecting);
       },
       {
@@ -28,6 +29,7 @@ function Experience() {
   }, []);
 
   const toggleItem = (id) => {
+    // Accordion behavior: open one item at a time, collapse when clicking active.
     setOpenId((prev) => (prev === id ? -1 : id));
   };
 
@@ -48,6 +50,7 @@ function Experience() {
               <article
                 key={index}
                 className={`experience__item ${isOpen ? "is-open" : ""}`}
+                // CSS custom property controls per-card reveal delay.
                 style={{ "--exp-delay": `${index * 110}ms` }}
               >
                 <button

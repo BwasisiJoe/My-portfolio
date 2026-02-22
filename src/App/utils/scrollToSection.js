@@ -2,6 +2,7 @@ export function scrollToSection(id) {
   const section = document.getElementById(id);
   if (!section) return;
 
+  // Shared CSS variable keeps scroll alignment in sync with fixed nav/header spacing.
   const offsetRaw = getComputedStyle(document.documentElement).getPropertyValue(
     "--section-scroll-offset"
   );

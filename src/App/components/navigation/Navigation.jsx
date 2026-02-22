@@ -13,6 +13,7 @@ function Navigation() {
   const [active, setActive] = useState("home");
   
   const handleNavScroll = (id) => {
+    // Keep click response instant while smooth-scroll moves to target section.
     scrollToSection(id);
     setActive(id);
     // Keep URL clean (no #fragments)
@@ -63,6 +64,7 @@ function Navigation() {
     };
 
     let ticking = false;
+    // Throttle scroll work to one update per animation frame.
     const onScrollOrResize = () => {
       if (ticking) return;
       ticking = true;

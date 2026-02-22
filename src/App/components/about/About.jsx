@@ -18,6 +18,7 @@ function About() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Toggle class so About reveal animation can replay when re-entering view.
         setIsInView(entry.isIntersecting)
       },
       { threshold: 0.25 }
@@ -30,6 +31,7 @@ function About() {
 
   const handleTalkToMe = (e) => {
     e.preventDefault()
+    // Reuse shared smooth-scrolling behavior for consistent nav offset handling.
     scrollToSection("contact")
   }
 

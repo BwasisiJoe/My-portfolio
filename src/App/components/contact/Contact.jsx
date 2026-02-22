@@ -13,6 +13,7 @@ function Contact() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Enables/disables section animation state based on viewport visibility.
         setIsInView(entry.isIntersecting);
       },
       {
@@ -27,6 +28,7 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // UI-only confirmation for now; hook API/email service here when backend is ready.
     setSubmitted(true);
     e.currentTarget.reset();
   };

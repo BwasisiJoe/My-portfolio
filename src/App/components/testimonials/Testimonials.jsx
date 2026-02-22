@@ -13,6 +13,7 @@ function Testimonials() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Toggles class for replayable card reveal animation.
         setIsInView(entry.isIntersecting);
       },
       {
@@ -40,6 +41,7 @@ function Testimonials() {
             <article
               key={item.name}
               className={`testimonials__card testimonials__card--${index + 1}`}
+              // Per-card delay keeps the reveal order stable regardless of re-render timing.
               style={{ "--testimonial-delay": `${index * 130}ms` }}
             >
               <BsQuote className="testimonials__quote" />

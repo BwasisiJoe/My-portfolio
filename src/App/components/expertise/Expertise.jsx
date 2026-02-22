@@ -43,6 +43,7 @@ function Expertise() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Switches reveal class on/off so animation can replay on re-entry.
         setIsInView(entry.isIntersecting);
       },
       {
@@ -69,6 +70,7 @@ function Expertise() {
           <article
             key={title}
             className="expertise__card"
+            // Staggered reveal timing for cards in a deterministic order.
             style={{ "--expertise-delay": `${index * 120}ms` }}
           >
             <div className="expertise__head">
